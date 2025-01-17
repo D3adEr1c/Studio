@@ -586,7 +586,7 @@ namespace AssetStudio
                                 {
                                     NetEaseUtils.DecryptWithHeader(compressedBytesSpan);
                                 }
-                                if (Game.Type.IsArknightsEndfield() && i == 0)
+                                if (Game.Type.IsArknightsEndfield() && i == 0 && compressedBytesSpan[..32].Count((byte)0xa6) > 5)
                                 {
                                     FairGuardUtils.Decrypt(compressedBytesSpan);
                                 }
@@ -622,7 +622,7 @@ namespace AssetStudio
                             try
                             {
                                 reader.Read(compressedBytesSpan);
-                                if (i == 0)
+                                if (i == 0 && compressedBytesSpan[..32].Count((byte)0xa6) > 5)
                                 {
                                     FairGuardUtils.Decrypt(compressedBytesSpan);
                                 }
