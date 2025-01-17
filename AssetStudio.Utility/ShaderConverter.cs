@@ -1049,7 +1049,7 @@ namespace AssetStudio
                             try
                             {
                                 var programCodeSpan = m_ProgramCode.AsSpan();
-                                var g = Compiler.Disassemble(programCodeSpan.GetPinnableReference(), programCodeSpan.Length, DisasmFlags.None, "");
+                                var g = Compiler.Disassemble(programCodeSpan.GetPinnableReference(), new PointerUSize((uint)programCodeSpan.Length), DisasmFlags.None, "");
 
                                 sb.Append($"// hash: {ComputeHash64(programCodeSpan):x8}\n");
                                 sb.Append(g.AsString());
@@ -1101,7 +1101,7 @@ namespace AssetStudio
 
                                 try
                                 {
-                                    var g = Compiler.Disassemble(buffSpan.GetPinnableReference(), buffSpan.Length, DisasmFlags.None, "");
+                                    var g = Compiler.Disassemble(buffSpan.GetPinnableReference(), new PointerUSize((uint)buffSpan.Length), DisasmFlags.None, "");
                                     sb.Append(g.AsString());
                                 }
                                 catch (Exception ex)
